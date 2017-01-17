@@ -21,6 +21,11 @@ module Guard
                 start unless alive?
                 pending << request
                 work_fifo_queue
+                self
+            end
+
+            def failed?
+                @pid && !alive?
             end
 
             def busy?
@@ -57,9 +62,9 @@ module Guard
                 stdin.write('q')
                 sleep(0.1)
                 return unless alive?
-                Process.kill(SIGTERM, pid)
+                Process.kill("TERM", pid)
                 sleep(0.1)
-                Process.kill(SIGKILL, pid) if alive?
+                Process.kill("KILL", pid) if alive?
                 @pid = nil
             end
 
