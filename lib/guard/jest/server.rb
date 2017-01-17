@@ -112,8 +112,8 @@ module Guard
                 return unless line.start_with?('{"')
                 begin
                     json = JSON.parse(line)
-                    result = @pending.pop
-                    result.satisfy(json) if result
+                    result = @pending.pop || RunRequest.new
+                    result.satisfy(json)
                     @work_in_progress.make_false
                     work_fifo_queue
                 rescue => e
@@ -125,8 +125,6 @@ module Guard
                 Jest.logger.debug "starting jest with #{cmd}"
                 @stdout, @stdin, @pid = PTY.spawn(cmd)
             end
-
         end
-
     end
 end

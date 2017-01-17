@@ -65,32 +65,4 @@ RSpec.describe Guard::Jest::Runner do
         end
     end
 
-    describe '#notify' do
-        let(:request) { Guard::Jest::RunRequest.new(runner, :all) }
-
-        it 'notifys server of successful run' do
-            expect(Guard::Jest::Formatter).to receive(:success).with(/2 specs, 0 failures/)
-            expect(Guard::Jest::Formatter).to(
-                receive(:notify).with(/2 specs, 0 failures/, title: "Jest suite passed")
-            )
-            expect(Guard::Jest::Formatter).to receive(:info).with(/Finished/)
-
-            request.satisfy(run_result_fixture(:success))
-        end
-
-        it 'notifies when runs fail' do
-            expect(Guard::Jest::Formatter).to receive(:info).with(/Finished/)
-
-            expect(Guard::Jest::Formatter).to(
-                receive(:error).with(/Link changes the class when hovered/)
-            )
-            expect(Guard::Jest::Formatter).to(
-                receive(:notify).with(
-                    /CheckboxWithLabel changes the text after click/,
-                    title: 'Jest test run failed', image: :failed, priority: 2
-                )
-            )
-            request.satisfy(run_result_fixture(:failure))
-        end
-    end
 end

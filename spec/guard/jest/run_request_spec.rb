@@ -8,16 +8,15 @@ RSpec.describe Guard::Jest::Runner do
     let(:options) { Guard::Jest::DEFAULT_OPTIONS.merge(server: server) }
     let(:runner)  { Guard::Jest::Runner.new(options) }
     let(:paths)   { %w(one two three) }
-    let(:request) { Guard::Jest::RunRequest.new(runner, paths) }
+    let(:request) { Guard::Jest::RunRequest.new(paths) }
 
     describe '#initialize' do
-        it 'remembers runner and paths option' do
+        it 'remembers paths option' do
             expect(request.paths).to  eq(paths)
-            expect(request.runner).to eq(runner)
         end
 
         context('when paths == :all') do
-            let(:paths){ :all }
+            let(:paths) { :all }
             it 'returns true from all?' do
                 expect(request.paths).to eq(:all)
                 expect(request.all?).to eq(true)
@@ -25,14 +24,7 @@ RSpec.describe Guard::Jest::Runner do
         end
     end
 
-
     describe '#satisfy' do
-
-        it 'notifys runner' do
-            expect(runner).to receive(:notify).with(request)
-            request.satisfy(run_result_fixture(:success))
-        end
-
         it 'sets satisfied? to true' do
             request.satisfy(run_result_fixture(:success))
             expect(request.satisfied?).to eq(true)
@@ -40,7 +32,36 @@ RSpec.describe Guard::Jest::Runner do
 
         it 'remembers result' do
             request.satisfy(run_result_fixture(:success))
-            expect(request.result).to eq( run_result_fixture(:success) )
+            expect(request.result).to eq(run_result_fixture(:success))
+        end
+    end
+
+    describe '#notify' do
+        let(:request) { Guard::Jest::RunRequest.new(:all) }
+
+        it 'notifys server of successful run' do
+            expect(Guard::Jest::Formatter).to receive(:success).with(/2 specs, 0 failures/)
+            expect(Guard::Jest::Formatter).to(
+                receive(:notify).with(/2 specs, 0 failures/, title: "Jest suite passed")
+            )
+            expect(Guard::Jest::Formatter).to receive(:info).with(/Finished/)
+
+            request.notify(run_result_fixture(:success))
+        end
+
+        it 'notifies when runs fail' do
+            expect(Guard::Jest::Formatter).to receive(:info).with(/Finished/)
+
+            expect(Guard::Jest::Formatter).to(
+                receive(:error).with(/Link changes the class when hovered/)
+            )
+            expect(Guard::Jest::Formatter).to(
+                receive(:notify).with(
+                    /CheckboxWithLabel changes the text after click/,
+                    title: 'Jest test run failed', image: :failed, priority: 2
+                )
+            )
+            request.satisfy(run_result_fixture(:failure))
         end
     end
 end

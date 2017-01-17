@@ -32,7 +32,7 @@ RSpec.describe Guard::Jest::Server do
         let(:server) { Guard::Jest::Server.new(options) }
         let(:io) { StringIO.new }
         let(:runner) { Guard::Jest::Runner.new(options) }
-        let(:request) { Guard::Jest::RunRequest.new(runner, :all) }
+        let(:request) { Guard::Jest::RunRequest.new(:all) }
 
         before(:each) do
             expect(server).to receive(:busy?).and_return false
