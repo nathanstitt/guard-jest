@@ -32,8 +32,8 @@ module Guard
         #
         def initialize(options = {})
             options = DEFAULT_OPTIONS.merge(options)
+            options[:server] = @server = options[:server] || Server.new(options)
             @runner = options[:runner] || Runner.new(options)
-            @server = options[:server] || Server.new(options)
             super(options)
         end
 
