@@ -29,10 +29,10 @@ module Guard
         # @option options [String] :jest_cmd path to jest application that should be executed
         #
         def initialize(options = {})
-
+            options = DEFAULT_OPTIONS.merge(options)
             @runner = options[:runner] || Runner.new(options)
             @server = options[:server] || Server.new(options)
-            super(DEFAULT_OPTIONS.merge(options))
+            super(options)
         end
 
         # Called once when Guard starts. Please override initialize method to init stuff.
