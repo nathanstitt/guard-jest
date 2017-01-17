@@ -8,6 +8,8 @@ require_relative 'jest/runner'
 require_relative 'jest/server'
 
 module Guard
+    # The Jest guard that gets notifications about the following
+    # Guard events: `start`, `stop`, `reload`, `run_all` and `run_on_modifications`.
     class Jest < Plugin
         class << self
             attr_writer :logger
@@ -18,9 +20,9 @@ module Guard
 
         DEFAULT_OPTIONS = {
             jest_cmd: 'jest'
-        }
+        }.freeze
 
-        attr_reader   :runner, :server
+        attr_reader :runner, :server
 
         # Initialize Guard::Jest
         #
@@ -107,6 +109,5 @@ module Guard
         def run_on_removals(paths)
             runner.remove_paths(paths)
         end
-
     end
 end
