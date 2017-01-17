@@ -1,0 +1,63 @@
+{
+  "numFailedTestSuites": 0,
+  "numFailedTests": 0,
+  "numPassedTestSuites": 2,
+  "numPassedTests": 2,
+  "numPendingTestSuites": 0,
+  "numPendingTests": 0,
+  "numRuntimeErrorTestSuites": 0,
+  "numTotalTestSuites": 2,
+  "numTotalTests": 2,
+  "snapshot": {
+    "added": 0,
+    "failure": false,
+    "filesAdded": 0,
+    "filesRemoved": 0,
+    "filesUnmatched": 0,
+    "filesUpdated": 0,
+    "matched": 0,
+    "total": 0,
+    "unchecked": 0,
+    "unmatched": 0,
+    "updated": 0
+  },
+  "startTime": 1484595945782,
+  "success": true,
+  "testResults": [
+    {
+      "message": "",
+      "name": "/test/foo/Baz.spec.jsx",
+      "summary": "",
+      "status": "passed",
+      "startTime": 1484595946296,
+      "endTime": 1484595947224,
+      "assertionResults": [
+        {
+          "status": "passed",
+          "title": "CheckboxWithLabel changes the text after click",
+          "failureMessages": [
+
+          ]
+        }
+      ]
+    },
+    {
+      "message": "",
+      "name": "/test/foo/Bar.spec.jsx",
+      "summary": "",
+      "status": "passed",
+      "startTime": 1484595947234,
+      "endTime": 1484595947380,
+      "assertionResults": [
+        {
+          "status": "passed",
+          "title": "CheckboxWithLabel changes the text after click",
+          "failureMessages": [
+
+          ]
+        }
+      ]
+    }
+  ],
+  "wasInterrupted": false
+}

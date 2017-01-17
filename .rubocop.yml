@@ -1,0 +1,13 @@
+Metrics/LineLength:
+  Max: 100
+
+StringLiterals:
+  Enabled: false
+
+Style/IndentationWidth:
+  Width: 4
+
+
+Style/MultilineMethodCallIndentation:
+  EnforcedStyle: indented_relative_to_receiver
+  IndentationWidth: 4

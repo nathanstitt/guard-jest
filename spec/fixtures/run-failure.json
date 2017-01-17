@@ -1,0 +1,63 @@
+{
+  "numFailedTestSuites": 1,
+  "numFailedTests": 1,
+  "numPassedTestSuites": 1,
+  "numPassedTests": 1,
+  "numPendingTestSuites": 0,
+  "numPendingTests": 0,
+  "numRuntimeErrorTestSuites": 0,
+  "numTotalTestSuites": 2,
+  "numTotalTests": 2,
+  "snapshot": {
+    "added": 0,
+    "failure": false,
+    "filesAdded": 0,
+    "filesRemoved": 0,
+    "filesUnmatched": 0,
+    "filesUpdated": 0,
+    "matched": 0,
+    "total": 0,
+    "unchecked": 0,
+    "unmatched": 0,
+    "updated": 0
+  },
+  "startTime": 1484601495540,
+  "success": false,
+  "testResults": [
+    {
+      "message": "\u001b[1m\u001b[31m  \u001b[1m● \u001b[1mLink changes the class when hovered › CheckboxWithLabel changes the text after click\u001b[39m\u001b[22m\n\n    \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).toEqual(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n    \n    Expected value to equal:\n      \u001b[32m3\u001b[39m\n    Received:\n      \u001b[31m2\u001b[39m\n\u001b[2m      \n      \u001b[2mat Object.<anonymous> (\u001b[2m\u001b[0m\u001b[36mspec/client/Test.spec.js\u001b[39m\u001b[0m\u001b[2m:15:19)\u001b[2m\n      \u001b[2mat process._tickCallback (\u001b[2minternal/process/next_tick.js\u001b[2m:103:7)\u001b[2m\u001b[22m\n",
+      "name": "/tmp/test/spec/client/Test.spec.js",
+      "summary": "",
+      "status": "failed",
+      "startTime": 1484601496022,
+      "endTime": 1484601496750,
+      "assertionResults": [
+        {
+          "status": "failed",
+          "title": "CheckboxWithLabel changes the text after click",
+          "failureMessages": [
+            "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).toEqual(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected value to equal:\n  \u001b[32m3\u001b[39m\nReceived:\n  \u001b[31m2\u001b[39m\n    at Object.<anonymous> (/tmp/test/spec/client/Test.spec.js:15:19)\n    at Object.<anonymous> (/tmp/test/node_modules/jest-jasmine2/build/jasmine-async.js:42:32)\n    at attemptAsync (/tmp/test/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:1986:24)\n    at QueueRunner.run (/tmp/test/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:1941:9)\n    at /tmp/test/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:1968:16\n    at /tmp/test/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:1911:9\n    at Object.fn (/tmp/test/node_modules/jest-jasmine2/build/jasmine-async.js:68:11)\n    at attemptAsync (/tmp/test/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:1986:24)\n    at QueueRunner.run (/tmp/test/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:1941:9)\n    at /tmp/test/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:1968:16\n    at /tmp/test/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:1911:9\n    at Object.fn (/tmp/test/node_modules/jest-jasmine2/build/jasmine-async.js:68:11)\n    at attemptAsync (/tmp/test/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:1986:24)\n    at QueueRunner.run (/tmp/test/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:1941:9)\n    at QueueRunner.execute (/tmp/test/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:1929:10)\n    at Spec.queueRunnerFactory (/tmp/test/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:718:35)\n    at Spec.execute (/tmp/test/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:372:10)\n    at Object.fn (/tmp/test/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:2586:37)\n    at attemptAsync (/tmp/test/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:1986:24)\n    at QueueRunner.run (/tmp/test/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:1941:9)\n    at QueueRunner.execute (/tmp/test/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:1929:10)\n    at queueRunnerFactory (/tmp/test/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:718:35)\n    at Object.fn (/tmp/test/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:2571:13)\n    at attemptAsync (/tmp/test/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:1986:24)\n    at QueueRunner.run (/tmp/test/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:1941:9)\n    at QueueRunner.execute (/tmp/test/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:1929:10)\n    at queueRunnerFactory (/tmp/test/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:718:35)\n    at TreeProcessor.execute (/tmp/test/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:2433:7)\n    at Env.execute (/tmp/test/node_modules/jest-jasmine2/vendor/jasmine-2.5.2.js:780:17)\n    at jasmine2 (/tmp/test/node_modules/jest-jasmine2/build/index.js:93:7)\n    at runTest (/tmp/test/node_modules/jest-cli/build/runTest.js:53:10)\n    at promise.then (/tmp/test/node_modules/jest-cli/build/TestRunner.js:304:14)\n    at process._tickCallback (internal/process/next_tick.js:103:7)"
+          ]
+        }
+      ]
+    },
+    {
+      "message": "",
+      "name": "/tmp/test/spec/client/Config.spec.jsx",
+      "summary": "",
+      "status": "passed",
+      "startTime": 1484601496759,
+      "endTime": 1484601497072,
+      "assertionResults": [
+        {
+          "status": "passed",
+          "title": "CheckboxWithLabel changes the text after click",
+          "failureMessages": [
+
+          ]
+        }
+      ]
+    }
+  ],
+  "wasInterrupted": false
+}
