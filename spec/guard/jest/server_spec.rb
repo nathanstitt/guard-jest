@@ -6,7 +6,7 @@ RSpec.describe Guard::Jest::Server do
     let(:options) { Guard::Jest::DEFAULT_OPTIONS }
     let(:server)  { Guard::Jest::Server.new(options) }
     let(:process) { OpenStruct.new(io: OpenStruct.new) }
-    let(:expected_pty_command) { "#{options[:jest_cmd]} --json --silent true --watch" }
+    let(:expected_pty_command) { "#{options[:jest_cmd]} --json --watch --silent" }
 
     describe '#initialize' do
         it 'does not start process' do
@@ -43,6 +43,14 @@ RSpec.describe Guard::Jest::Server do
         it 'records request and marks as busy' do
             server.run(request)
             expect(server.pending.length).to eq(1)
+        end
+
+        it 'sends "u" command for #update_snapshots' do
+            expect(request).to receive(:all?).and_return true
+            expect(io).to receive(:write).with('a')
+            expect(io).to receive(:write).with('u')
+            server.run(request)
+            server.update_snapshots
         end
 
         it 'sends "a" command for #run_all' do

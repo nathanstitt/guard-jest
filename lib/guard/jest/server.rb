@@ -80,7 +80,7 @@ module Guard
                 @options = options
                 @directory = options[:directory]
                 @cmd = options[:jest_cmd] + ' --json --watch'
-                @cmd << ' --silent ' if options[:silent]
+                @cmd << ' --silent' if options[:silent]
                 @cmd << " --config #{options[:config_file]}" if options[:config_file]
                 if alive?
                     stop
