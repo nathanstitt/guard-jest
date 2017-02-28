@@ -117,10 +117,9 @@ module Guard
             end
 
             def log(line)
-                return if options[:silent]
+                return if options[:silent] || line =~ IGNORED_LINES
                 line.sub!(CLEAR, '') # stop Jest from clearing console history
-
-                Jest.logger.info('|'+line.chomp) unless line =~ IGNORED_LINES
+                Jest.logger.info(line.chomp)
             end
 
             def record_result(line)
