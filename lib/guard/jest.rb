@@ -47,9 +47,14 @@ module Guard
         def start
             throw :task_has_failed unless server.start
             run_all if options[:all_on_start]
-            Pry::Commands.block_command "u", "Update Jest snapshots" do
-                Guard.state.session.plugins.all(:jest)
-                    .first.runner.server.update_snapshots
+            Pry::Commands.block_command "j", "Update Jest snapshots" do | cmd |
+                server = Guard.state.session.plugins.all(:jest).first.runner.server
+                case cmd
+                when 'u' then server.update_snapshots
+                else
+                    Formatter.error("unknown command #{cmd}")
+                end
+
             end
         end
 

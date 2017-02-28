@@ -38,6 +38,11 @@ guard 'jest' do
 end
 ```
 
+## Interactive use
+
+From the Guard console, typeing 'j u' and pressing enter will trigger a snaphot update.
+
+
 ## Options
 
 There are many options that can customize Guard::Jest to your needs. Options are simply supplied as hash when
