@@ -1,3 +1,4 @@
+# coding: utf-8
 require 'concurrent/array'
 require 'concurrent/atomic/atomic_boolean'
 require 'pty'
@@ -6,9 +7,11 @@ require 'json'
 module Guard
     class Jest < Plugin
 
+        IGNORED_LINES = /(?:Watch Usage| › Press )/
+
         class Server
             CR = 13.chr
-
+            CLEAR = "\x1B[2J\x1B[3J\x1B[H"
             attr_reader :stdout, :stdin, :pid, :last_result, :options, :cmd, :pending
 
             def initialize(options = {})
@@ -107,22 +110,42 @@ module Guard
                 stdin.write(CR)
             end
 
+            def log(line)
+                return if options[:silent]
+                line.sub!(CLEAR, '') # stop Jest from clearing console history
+
+                Jest.logger.info('|'+line.chomp) unless line =~ IGNORED_LINES
+            end
+
             def record_result(line)
                 # looks vaguely jsonish if it starts with {"
-                return unless line.start_with?('{"')
+
+                unless line =~ /\{\"numFailedTestSuites\"\:\d+/
+                    log(line)
+                    return
+                end
+
                 begin
+                    line.sub!(/\A.*?\{/, '{')
+                    line.sub!(/\}.*?\z/, '}')
                     json = JSON.parse(line)
-                    result = @pending.pop || RunRequest.new
+                    result = @pending.pop
+                    if result
+                        stdin.write('o') # revert back to watching changed files
+                    else
+                        result = RunRequest.new
+                    end
                     result.satisfy(json)
                     @work_in_progress.make_false
                     work_fifo_queue
-                rescue => e
-                    Jest.logger.warn e
+                rescue e
+                    Jest.logger.warn e.class.to_s + ": " + e.message
+                    puts e.backtrace.join("\n")
                 end
             end
 
             def spawn
-                Jest.logger.debug "starting jest with #{cmd}"
+                Jest.logger.info "Starting Jest with #{cmd}"
                 @stdout, @stdin, @pid = PTY.spawn(cmd)
             end
         end
