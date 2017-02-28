@@ -39,6 +39,10 @@ module Guard
                 sleep(0.1) while busy?
             end
 
+            def update_snapshots
+                stdin.write('u')
+            end
+
             def start
                 @threads = []
                 @work_in_progress.make_true

@@ -45,6 +45,10 @@ module Guard
         def start
             throw :task_has_failed unless server.start
             run_all if options[:all_on_start]
+            Pry::Commands.block_command "u", "Update Jest snapshots" do
+                Guard.state.session.plugins.all(:jest)
+                    .first.runner.server.update_snapshots
+            end
         end
 
         # Called when `stop|quit|exit|s|q|e + enter` is pressed (when Guard quits).
