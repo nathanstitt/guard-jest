@@ -66,6 +66,7 @@ module Guard
             end
 
             def stop
+                return unless alive?
                 stdin.write('q')
                 sleep(0.1)
                 return unless alive?
@@ -78,7 +79,8 @@ module Guard
             def reload(options)
                 @options = options
                 @directory = options[:directory]
-                @cmd = options[:jest_cmd] + ' --json --silent true --watch'
+                @cmd = options[:jest_cmd] + ' --json --watch'
+                @cmd << ' --silent ' if options[:silent]
                 @cmd << " --config #{options[:config_file]}" if options[:config_file]
                 if alive?
                     stop

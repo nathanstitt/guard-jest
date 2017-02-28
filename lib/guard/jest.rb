@@ -19,6 +19,7 @@ module Guard
         end
 
         DEFAULT_OPTIONS = {
+            silent:   true,
             jest_cmd: 'jest'
         }.freeze
 
@@ -33,6 +34,7 @@ module Guard
         def initialize(options = {})
             options = DEFAULT_OPTIONS.merge(options)
             options[:server] = @server = options[:server] || Server.new(options)
+            Jest.logger = options[:logger] if options[:logger]
             @runner = options[:runner] || Runner.new(options)
             super(options)
         end
