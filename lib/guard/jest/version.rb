@@ -1,7 +1,7 @@
 require 'guard/compat/plugin'
 
 module Guard
-  class Jest < Plugin
-    VERSION = "0.1.0"
-  end
+    class Jest < Plugin
+        VERSION = "0.1.1"
+    end
 end
