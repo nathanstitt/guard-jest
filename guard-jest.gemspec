@@ -1,10 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'guard/jest/version'
 
 Gem::Specification.new do |spec|
     spec.name          = "guard-jest"
-    spec.version       = '0.1.1'
+    spec.version       = Guard::Jest::VERSION
     spec.authors       = ["Nathan Stitt"]
     spec.email         = ["nathan@stitt.org"]
 
